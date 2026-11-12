@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CampusEats | Food around Kristu Jayanti</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">C</span><span>Campus<span class="accent">Eats</span><small>FOOD • FRIENDS • CAMPUS LIFE</small></span></a>
+    <nav><a href="#menu">Explore food</a><a href="#add-food">Add food</a><button id="ordersBtn" class="nav-link">My orders</button></nav>
+    <div class="account"><span id="welcomeText">Welcome, student</span><button id="authOpen" class="btn btn-outline">Login / Register</button><button id="logoutBtn" class="btn btn-outline hidden">Logout</button><button id="cartOpen" class="btn btn-primary">Cart <b id="cartCount">0</b></button></div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">YOUR CAMPUS FOOD COMPANION</span>
+        <h1>Good food.<br><em>Great</em> campus days.</h1>
+        <p>Discover nearby bites, cafés and student hangouts around Kristu Jayanti Deemed to be University.</p>
+        <a class="btn btn-primary hero-btn" href="#menu">Explore the menu <span>↗</span></a>
+        <div class="hero-note"><span class="live-dot"></span> Made for the Kristu Jayanti student community</div>
+      </div>
+      <div class="hero-art">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="food-emoji">🍔</div><div class="float-card card-top">🥤 <span>Study break?</span></div><div class="float-card card-bottom">🍟 <span>Snack o'clock</span></div>
+        <div class="hero-sticker">TASTY<br>NEARBY!</div>
+      </div>
+    </section>
+
+    <section class="section" id="menu">
+      <div class="section-head"><div><span class="eyebrow">WHAT ARE YOU CRAVING?</span><h2>Find your next favourite</h2><p>Browse sample menu items and add your favourites to the cart.</p></div><div class="search"><span>⌕</span><input id="searchInput" type="search" placeholder="Search food or restaurant..." /></div></div>
+      <div class="filters" id="filters">
+        <button class="filter active" data-category="All">All</button><button class="filter" data-category="Meals">Meals</button><button class="filter" data-category="Fast Food">Fast food</button><button class="filter" data-category="Snacks">Snacks</button><button class="filter" data-category="Cafe">Café</button><button class="filter" data-category="Drinks">Drinks</button>
+      </div>
+      <div id="foodGrid" class="food-grid"><p class="muted">Loading menu…</p></div>
+    </section>
+
+    <section class="add-section" id="add-food">
+      <div><span class="eyebrow">COMMUNITY MENU</span><h2>Know a good bite nearby?</h2><p>Logged-in students can submit a food item. Please enter accurate vendor and price details.</p></div>
+      <form id="addFoodForm" class="add-form">
+        <input name="name" placeholder="Food item name" required />
+        <input name="restaurant" placeholder="Restaurant / café name" required />
+        <div class="form-row"><select name="category"><option>Meals</option><option>Fast Food</option><option>Snacks</option><option>Cafe</option><option>Drinks</option></select><input name="price" type="number" min="1" placeholder="Price (₹)" required /></div>
+        <input name="location" placeholder="Location (e.g. Kothanur)" />
+        <input name="description" placeholder="Short description" />
+        <button class="btn btn-dark" type="submit">Submit food item <span>＋</span></button>
+        <small id="addFoodMessage" class="form-message"></small>
+      </form>
+    </section>
+
+    <section class="section location-strip"><div class="pin">⌖</div><div><h3>Focused on your campus neighbourhood</h3><p>Kristu Jayanti Deemed to be University · Kothanur, Bengaluru</p></div><a target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=restaurants+near+Kristu+Jayanti+Deemed+to+be+University">Open nearby places in Maps ↗</a></section>
+  </main>
+
+  <footer><a class="brand" href="#"><span class="brand-mark">C</span><span>Campus<span class="accent">Eats</span><small>FOOD • FRIENDS • CAMPUS LIFE</small></span></a><p>Built for student life around Kristu Jayanti.</p><small>Demo project · Verify vendor details before ordering.</small></footer>
+
+  <div class="modal hidden" id="authModal"><div class="modal-card"><button class="close" data-close="authModal">×</button><span class="eyebrow">WELCOME TO CAMPUSEATS</span><h2 id="authTitle">Login to your account</h2><div class="tabs"><button class="tab active" data-mode="login">Login</button><button class="tab" data-mode="register">Register</button></div><form id="authForm"><label id="nameLabel" class="hidden">Full name<input name="name" autocomplete="name" /></label><label>Email address<input name="email" type="email" autocomplete="email" required /></label><label>Password<input name="password" type="password" minlength="6" autocomplete="current-password" required /></label><button class="btn btn-primary full" type="submit" id="authSubmit">Login</button><p id="authMessage" class="form-message"></p></form></div></div>
+
+  <div class="drawer-backdrop hidden" id="cartBackdrop"></div>
+  <aside class="drawer" id="cartDrawer"><div class="drawer-head"><div><span class="eyebrow">YOUR SELECTION</span><h2>Your cart</h2></div><button class="close" id="cartClose">×</button></div><div id="cartItems" class="cart-items"><p class="muted">Your cart is empty.</p></div><div class="cart-bottom"><div class="total-line"><span>Subtotal</span><strong id="cartTotal">₹0</strong></div><button class="btn btn-primary full" id="checkoutOpen">Continue to checkout →</button></div></aside>
+
+  <div class="modal hidden" id="checkoutModal"><div class="modal-card checkout-card"><button class="close" data-close="checkoutModal">×</button><span class="eyebrow">ALMOST THERE</span><h2>Checkout & payment</h2><form id="checkoutForm"><label>Delivery / pickup details<textarea name="deliveryAddress" rows="3" placeholder="Hostel, block, room number or pickup instructions" required></textarea></label><label>Payment method<select name="paymentMethod"><option>Cash on Delivery</option><option>Demo Online Payment</option></select></label><div class="payment-note">Demo online payment only: no card, UPI PIN or bank details are collected. Connect a payment gateway before accepting real payments.</div><div class="total-line"><span>Order total</span><strong id="checkoutTotal">₹0</strong></div><button class="btn btn-primary full" type="submit">Place order</button><p id="checkoutMessage" class="form-message"></p></form></div></div>
+
+  <div class="modal hidden" id="ordersModal"><div class="modal-card orders-card"><button class="close" data-close="ordersModal">×</button><span class="eyebrow">ORDER HISTORY</span><h2>My orders</h2><div id="ordersList" class="orders-list"></div></div></div>
+  <div id="toast" class="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
